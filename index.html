@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>76th GSC — Quick Reference Guide</title>
+<style>
+  @page { size: letter; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Calibri", "Segoe UI", Arial, sans-serif;
+    color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body { font-size: 8pt; line-height: 1.22; }
+
+  /* Each .sheet is exactly one printed page. */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    position: relative;
+  }
+  .sheet:last-of-type {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* ======== BANNER (top of every sheet) ======== */
+  .banner {
+    height: 0.78in;
+    display: flex;
+    align-items: stretch;
+    background: #4A5C5E;
+    color: #fff;
+  }
+  .banner-left {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    flex: 0 0 auto;
+  }
+  .banner-circle {
+    background: #000;
+    color: #fff;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15pt;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .banner-title {
+    font-weight: 700;
+    font-size: 17pt;
+    line-height: 1.05;
+    letter-spacing: 0.3px;
+  }
+  .banner-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.5);
+    margin: 10px 0;
+  }
+  .banner-right {
+    flex: 1 1 auto;
+    padding: 0 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+  }
+  .banner-qrg {
+    font-weight: 700;
+    font-size: 21pt;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .banner-tag {
+    font-size: 7.5pt;
+    margin-top: 4px;
+    line-height: 1.25;
+  }
+
+  /* ======== CONTENT AREA ======== */
+  /* Sheet height (11in) - banner (0.78in) - footer (0.32in) = 9.90in available */
+  .content {
+    height: 9.90in;
+    overflow: hidden;
+    padding: 4px 14px 6px;
+  }
+  .meeting-line {
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 700;
+    padding: 3px 14px 1px;
+  }
+  .disclaimer {
+    font-size: 7.5pt;
+    font-style: italic;
+    text-align: center;
+    padding: 3px 24px 4px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #c8c8c8;
+    margin-bottom: 4px;
+  }
+
+  .cols {
+    column-count: 2;
+    column-gap: 14px;
+    column-rule: 1px solid #c8c8c8;
+  }
+
+  .section-band {
+    column-span: all;
+    -webkit-column-span: all;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13pt;
+    letter-spacing: 0.4px;
+    background: #efefef;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    padding: 5px 0;
+    margin: 6px 0 7px;
+  }
+  .section-band .sub {
+    font-weight: 400;
+    font-size: 9.5pt;
+  }
+
+  .subsection {
+    font-weight: 700;
+    font-size: 9pt;
+    text-transform: uppercase;
+    margin: 5px 0 2px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .subsection:first-child { margin-top: 0; }
+  .subsection-note {
+    font-weight: 400;
+    font-size: 7.5pt;
+    font-style: italic;
+    text-transform: none;
+  }
+
+  ul.items {
+    list-style: disc;
+    margin: 1px 0 3px 0;
+    padding-left: 14px;
+  }
+  ul.items > li { margin-bottom: 3px; }
+
+  ul.sub {
+    list-style: disc;
+    margin: 3px 0 3px 0;
+    padding-left: 14px;
+    font-size: 8pt;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+  }
+  ul.sub > li { margin-bottom: 1px; }
+
+  blockquote {
+    margin: 2px 0 3px 4px;
+    padding: 1px 7px;
+    border-left: 2px solid #999;
+    font-size: 7.75pt;
+    color: #222;
+  }
+  blockquote p { margin: 2px 0; }
+
+  .vote-cite { font-style: italic; color: #333; }
+
+  .fa-block {
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+    margin-bottom: 4px;
+  }
+  .fa-heading {
+    font-weight: 700;
+    margin: 6px 0 2px;
+    font-size: 9pt;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .fa-body {
+    font-size: 8.5pt;
+    margin: 0 0 3px;
+  }
+  .fa-cite {
+    display: block;
+    font-style: italic;
+    font-size: 7.5pt;
+    color: #444;
+    margin-top: 1px;
+  }
+
+  /* ======== TABLES ======== */
+  table.vote-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3px 0 7px;
+    font-size: 7.5pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  table.vote-table th,
+  table.vote-table td {
+    border: 1px solid #888;
+    padding: 3px 4px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  table.vote-table thead th {
+    background: #4A5C5E;
+    color: #fff;
+    font-weight: 700;
+  }
+  table.vote-table thead .sub-th {
+    font-size: 7pt;
+    padding: 2px 3px;
+  }
+  table.vote-table td.action-cell {
+    text-align: left;
+    width: 38%;
+  }
+  table.vote-table td.outcome-cell {
+    width: 18%;
+    font-weight: 400;
+  }
+  .motion-passed { font-weight: 700; }
+
+  /* ======== FOOTER ======== */
+  .footer {
+    height: 0.32in;
+    background: #4A5C5E;
+    color: #fff;
+    font-size: 8pt;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+  }
+
+  p { margin: 2px 0; }
+</style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SHEET 1 — Advisory Actions
+       ============================================================ -->
+  <div class="sheet">
+
+    <header class="banner">
+      <div class="banner-left">
+        <div class="banner-circle">76<sup style="font-size:7pt;">th</sup></div>
+        <div class="banner-title">GENERAL SERVICE<br>CONFERENCE</div>
+      </div>
+      <div class="banner-divider"></div>
+      <div class="banner-right">
+        <div class="banner-qrg">QUICK REFERENCE GUIDE</div>
+        <div class="banner-tag">For financial information and additional committee considerations, please consult with your Delegate.</div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="intro">
+        <div class="meeting-line">April 26 – May 2, 2026 · New York Hilton Midtown, New York, NY</div>
+        <div class="disclaimer">
+          Confidential Report, May Contain PII Data. Vote tallies shown as In Favor – Opposed (2/3 substantial unanimity required for an Advisory Action). Items are summarized; refer to the Final Conference Report for exact recommendation language. Please contact your delegate for full details.
+        </div>
+      </div>
+
+      <div class="cols">
+        <div class="section-band">Advisory Actions <span class="sub">(Passed with 2/3 Substantial Unanimity)</span></div>
+
+        <div class="subsection">AGENDA</div>
+        <ul class="items">
+          <li>The following theme for the 2027 General Service Conference (GSC): <strong>"Honoring Our Past, Embracing Our Future."</strong> <span class="vote-cite">(129–2)</span></li>
+          <li>The following presentation/discussion topics for the 2027 GSC: <strong>"The Spirit of Rotation: Cultivating Leadership"</strong>, <strong>"Anonymity, Our Spiritual Compass"</strong>, <strong>"Innovation Meets Tradition."</strong> <span class="vote-cite">(129–2)</span></li>
+          <li>2027 GSC workshop topic: <strong>"Unexpected Spiritual Lessons."</strong> <span class="vote-cite">(124–5)</span></li>
+        </ul>
+
+        <div class="subsection">CORRECTIONS</div>
+        <ul class="items">
+          <li>An update to the pamphlet <strong>"The A.A. Member — Medications and Other Drugs"</strong> (P-11), with progress report or draft to the 2027 GSC. <span class="vote-cite">(129–5; PAI 50 &amp; 56)</span></li>
+        </ul>
+
+        <div class="subsection">FINANCE</div>
+        <ul class="items">
+          <li>
+            Update <strong>F-3 Self-Support: Where Money and Spirituality Mix</strong> pg 12 in Q&amp;A on AA Grapevine support be changed from:
+            <blockquote>
+              <p><strong>Q:</strong> Can our group make financial contributions to AA Grapevine?</p>
+              <p><strong>A:</strong> No. AA Grapevine, Inc. is not set up to take contributions from groups or individuals. Groups and individual members support the Grapevine by purchasing Grapevine and La Viña subscriptions and other Grapevine publications and using them in their Twelfth Step work.</p>
+            </blockquote>
+            Be replaced with:
+            <blockquote>
+              <p><strong>Q:</strong> How can our group support AA Grapevine / La Viña?</p>
+              <p><strong>A:</strong> AA Grapevine, Inc. does not accept contributions from groups or individuals. Groups and individual members support the Grapevine by purchasing Grapevine and La Viña subscriptions and other Grapevine publications and using them in their Twelfth Step work. When your group is discussing how your funds should be used, you may consider purchasing subscriptions, gift certificates, books and other materials, or supporting the Carry the Message project to ensure that Grapevine and La Viña continue to carry the message of Alcoholics Anonymous. For further information, visit aagrapevine.org.</p>
+            </blockquote>
+            <span class="vote-cite">(121–10; PAI 99)</span>
+          </li>
+        </ul>
+
+        <div class="subsection">LITERATURE</div>
+        <ul class="items">
+          <li>The <strong>Fifth Edition of <em>Alcoholics Anonymous</em></strong> be approved with minor editorial changes. <span class="vote-cite">(125–9)</span> Includes revised Appendix III (Medical View), Appendix V (Religious View), Appendix IV (Lasker Award footnote → aa.org), and Appendix VI (How to Get in Touch with A.A.).</li>
+          <li>The word <strong>"Eskimo"</strong> be removed from "Chapter 7: Working With Others" of <em>Alcoholics Anonymous</em> and replaced with a neutral, non-racial term. <span class="vote-cite">(112–22)</span> Amendment to also include the <em>12 &amp; 12</em> Tradition Eight essay failed at this stage <span class="vote-cite">(50–82)</span> — but was later passed via Floor Action #6.</li>
+          <li>
+            The committee noted that in accordance with the 2021 Conference Advisory Action authorizing development of the Fifth Edition <em>Alcoholics Anonymous</em>, which reads in part:
+            <blockquote>
+              <p>"Pending its development, the draft Fifth Edition of the Big Book would include a new foreword, an updated preface and updates to expand on existing ideas in Appendices III and V"</p>
+            </blockquote>
+            "Appendix III — The Medical View on A.A." and "Appendix V — The Religious View on A.A." have been revised in keeping with the 2021 Conference Advisory Action.<br>
+            "Appendix IV — The Lasker Award" was revised to include a footnote to direct readers to the awards page on aa.org.<br>
+            "Appendix VI — How to Get in Touch with A.A." was revised to reflect more current best practices.
+          </li>
+          <li>
+            In keeping with the "A.A. World Services, Inc. Policy on Publication: Keeping A.A. Literature Current," which was accepted by the General Service Conference Advisory Action in 2020, and subsequently revised by the AAWS Board in 2022, the committee noted that the Publishing Department of the General Service Office will maintain editorial responsibilities for the Fifth Edition of the book <em>Alcoholics Anonymous</em>, including:
+            <ul class="sub">
+              <li>Editorial "fine tuning" such as footnotes, punctuation, capitalization, spelling, page numbers, headings and subheadings</li>
+              <li>Finalizing the titles and order of personal stories</li>
+              <li>Editorial review of the title page, jacket copy and table of contents</li>
+              <li>Coordinating the flow of work between the book designer, typesetters, copyeditors, proofreaders and the printers</li>
+              <li>Designing the book cover and jacket</li>
+              <li>Listing other A.A. literature in the final pages of the book</li>
+              <li>Determining the potential inclusion of QR codes based upon current best practices as identified by AAWS, Inc.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="subsection">POLICY/ADMISSIONS</div>
+        <ul class="items">
+          <li>Following the <strong>78th GSC</strong>, the <strong>Equitable Distribution of Workload (EDW)</strong> process be discontinued. <span class="vote-cite">(93–39)</span></li>
+        </ul>
+
+        <div class="subsection">PUBLIC INFORMATION</div>
+        <ul class="items">
+          <li>Conduct a <strong>pilot 2026 Membership Survey</strong>, budget not to exceed <strong>$10,000</strong>, exploring how to include groups not listed by the General Service Office (GSO). The pilot uses the 2022 Membership Survey questionnaire for comparison and samples listed and unlisted groups in 3–5 areas. Progress report to 2027 GSC.</li>
+          <li>Approve revised pamphlet <strong>"Understanding Anonymity"</strong> (P-47), retitled <strong>"Anonymity – Our Spiritual Foundation."</strong> <span class="vote-cite">(91–41)</span></li>
+        </ul>
+
+        <div class="subsection">REPORT &amp; CHARTER</div>
+        <ul class="items">
+          <li>
+            Add to the FAQ in Chapter 1 <strong>"What happens if a group decides not to hear a GSR report?"</strong> of the <strong>2026–2028 Edition</strong> of <em>The A.A. Service Manual / Twelve Concepts for World Service</em>. The answer covers alternate sharing methods (with respect for Tradition Eleven) and the spiritual importance of two-way GSR communication. <span class="vote-cite">(123–5 — recommit from 75th GSC)</span>
+            <div style="margin-top:2px;">The answer reads:</div>
+            <blockquote>
+              <p>If a group decides not to hear a GSR report during a meeting, the information can still be shared in other ways. This may include a written report with printed copies, email, group messaging, a shared online document, or posting the report on a bulletin or noticeboard. When utilizing these methods, it is important to respect Tradition Eleven and protect anonymity, so that members' names are not publicly available.</p>
+              <p>Hearing the GSR report is important because it helps keep the group connected to A.A. as a whole. As co-founder Bill W. explained, A.A. groups hold the ultimate responsibility for A.A. world services. The GSR serves as the communication link between the group and the larger Fellowship by sharing the group conscience with the Conference and bringing Conference actions back to the group. This two-way communication allows the group to have a voice in A.A., strengthens unity, and provides spiritual benefits by helping members stay informed, involved, and connected to the Fellowship beyond the home group.</p>
+            </blockquote>
+          </li>
+          <li>Approve a draft of a new <strong>"Amendments" section</strong> for inclusion at the beginning of the Twelve Concepts for World Service section of the Service Manual. <span class="vote-cite">(130–1)</span></li>
+        </ul>
+
+        <div class="subsection">TRUSTEES</div>
+        <ul class="items">
+          <li>The trustees' Literature Committee <strong>produce an animated video</strong> based on <strong>"The Twelve Steps Illustrated"</strong> (P-55), with progress report to 2027. <span class="vote-cite">(104–27; PAI 103)</span></li>
+          <li>The trustees' Literature Committee <strong>explore producing an animated video</strong> based on <strong>"The Twelve Traditions Illustrated"</strong> (P-43), with progress report to 2027. <span class="vote-cite">(Original "produce" 110–21; amended to "explore producing" by simple majority; PAI 104)</span></li>
+        </ul>
+
+        <div class="subsection">INVENTORY IMPLEMENTATION <span class="subsection-note">(one-time committee, follow-up to 75th GSC inventory)</span></div>
+        <ul class="items">
+          <li>
+            The Inventory Implementation Report be <strong>committed to the General Service Board</strong> for review and follow-through. <span class="vote-cite">(112–17)</span> Recommendations included:
+            <ul class="sub">
+              <li>Conference committees made aware of all PAIs through the <strong>quarterly PAI Status Grid</strong>.</li>
+              <li>Year-round PAI submissions encouraged (cut-off only for the immediately upcoming GSC).</li>
+              <li>Conference inventory recurring on a <strong>five-year cadence beginning 2031</strong>, with an implementation committee following each.</li>
+              <li>GSB <strong>sharing session</strong> on the roles and responsibilities of trustees, directors, delegates, and Staff.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="footer">For financial information and additional committee considerations, please consult with your Delegate.</footer>
+
+  </div>
+
+  <!-- ============================================================
+       SHEET 2 — Floor Actions
+       ============================================================ -->
+  <div class="sheet">
+
+    <header class="banner">
+      <div class="banner-left">
+        <div class="banner-circle">76<sup style="font-size:7pt;">th</sup></div>
+        <div class="banner-title">GENERAL SERVICE<br>CONFERENCE</div>
+      </div>
+      <div class="banner-divider"></div>
+      <div class="banner-right">
+        <div class="banner-qrg">QUICK REFERENCE GUIDE</div>
+        <div class="banner-tag">For financial information and additional committee considerations, please consult with your Delegate.</div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="cols">
+        <div class="section-band">Floor Actions <span class="sub">(Resulting in Advisory Actions)</span></div>
+
+        <div class="fa-block">
+        <div class="fa-heading">Floor Action #2:</div>
+        <p class="fa-body">Suggested area contribution for delegate expense to attend the Conference be increased from <strong>$2,200 to $3,000</strong> (amended down from a proposed $4,800).<span class="fa-cite">— Lisa E, Panel 76, Area 70, Vermont (Apr 29, 2026)</span></p>
+        <table class="vote-table">
+          <thead>
+            <tr>
+              <th rowspan="2">ACTION</th>
+              <th colspan="4">VOTES</th>
+              <th rowspan="2">OUTCOME</th>
+            </tr>
+            <tr>
+              <th class="sub-th">TOTAL</th>
+              <th class="sub-th">YES</th>
+              <th class="sub-th">NO</th>
+              <th class="sub-th">2/3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="action-cell">Amendment ($4,800 → $3,000)</td>
+              <td>128</td><td>95</td><td>33</td><td>86</td>
+              <td class="outcome-cell motion-passed">Motion Passed</td>
+            </tr>
+            <tr>
+              <td class="action-cell">Final (Amended) Recommendation</td>
+              <td>131</td><td>104</td><td>27</td><td>88</td>
+              <td class="outcome-cell motion-passed">Motion Passed</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fa-block">
+        <div class="fa-heading">Floor Action #4:</div>
+        <p class="fa-body">AAWS offer a <strong>print version of the 2026 Final Conference Report</strong> for purchase at $3.31/copy; if production costs are not covered by sales, the FCR print version ends after the 2027 GSC. FCR prepaid orders to be taken ASAP.<span class="fa-cite">— Jodi B, Panel 75, Area 21, Southern Illinois (May 1, 2026)</span></p>
+        <table class="vote-table">
+          <thead>
+            <tr>
+              <th rowspan="2">ACTION</th>
+              <th colspan="4">VOTES</th>
+              <th rowspan="2">OUTCOME</th>
+            </tr>
+            <tr>
+              <th class="sub-th">TOTAL</th>
+              <th class="sub-th">YES</th>
+              <th class="sub-th">NO</th>
+              <th class="sub-th">2/3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="action-cell">1<sup>st</sup> Vote on Original Recommendation</td>
+              <td>129</td><td>70</td><td>59</td><td>SM</td>
+              <td class="outcome-cell">Simple Majority only</td>
+            </tr>
+            <tr>
+              <td class="action-cell">Vote on <strong>Motion to Reconsider</strong></td>
+              <td>—</td><td>—</td><td>—</td><td>—</td>
+              <td class="outcome-cell motion-passed">Motion Passed</td>
+            </tr>
+            <tr>
+              <td class="action-cell">Final Vote on Recommendation</td>
+              <td>133</td><td>89</td><td>44</td><td>89</td>
+              <td class="outcome-cell motion-passed">Motion Passed</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="fa-block">
+        <div class="fa-heading">Floor Action #6:</div>
+        <p class="fa-body">Remove the word <strong>"Eskimo"</strong> from the <em>Twelve Steps and Twelve Traditions</em>, Tradition Eight chapter essay, and replace with a neutral, non-racial term.<span class="fa-cite">— Patrick C, GSO Staff, International Assignment (May 1, 2026)</span></p>
+        <table class="vote-table">
+          <thead>
+            <tr>
+              <th rowspan="2">ACTION</th>
+              <th colspan="4">VOTES</th>
+              <th rowspan="2">OUTCOME</th>
+            </tr>
+            <tr>
+              <th class="sub-th">TOTAL</th>
+              <th class="sub-th">YES</th>
+              <th class="sub-th">NO</th>
+              <th class="sub-th">2/3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="action-cell">Original Recommendation</td>
+              <td>134</td><td>103</td><td>31</td><td>90</td>
+              <td class="outcome-cell motion-passed">Motion Passed</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="section-band">Floor Actions <span class="sub">(Not Resulting in Advisory Actions)</span></div>
+
+        <div class="subsection">FAILED (Simple Majority Only)</div>
+        <div class="fa-heading">Floor Action #1:</div>
+        <p class="fa-body">No communication to the Fellowship regarding the <strong>A.A. Reserve Fund</strong> balance be distributed without including currently approved draws. <span class="vote-cite">(72–56; failed 2/3)</span><span class="fa-cite">— Jon S, Panel 75, Area 32, Central Michigan (Apr 29, 2026)</span></p>
+
+        <div class="subsection">CONFERENCE DECLINED TO CONSIDER</div>
+        <div class="fa-heading">Floor Action #3:</div>
+        <p class="fa-body">Consider a request to <strong>create a Twelve Step study guide or workbook</strong>. <span class="vote-cite">(declined 98–37)</span><span class="fa-cite">— Adrian O, Panel 76, Area 8, San Diego/Imperial California (Apr 29, 2026) (Same request was also TNA at the Finance Committee.)</span></p>
+
+        <div class="fa-heading">Floor Action #5:</div>
+        <p class="fa-body"><strong>Suspend printing of the Fifth Edition of <em>Alcoholics Anonymous</em></strong> until the Conference develops further consensus around procedures and practices respecting changes to "Founders' Writings." <span class="vote-cite">(106–26)</span><span class="fa-cite">— Michael R, Panel 75, Area 11, Connecticut (May 1, 2026) (Note: 5th Ed. text was approved by Literature Committee Item B above; this floor action paused actual printing.)</span></p>
+      </div>
+    </main>
+
+    <footer class="footer">For financial information and additional committee considerations, please consult with your Delegate.</footer>
+
+  </div>
+
+</body>
+</html>
