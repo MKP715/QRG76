@@ -217,12 +217,16 @@
     font-size: 8.5pt;
     text-align: center;
     margin: 2px 0 4px;
-    padding: 3px 6px;
+    padding: 1px 6px 2px;
     background: #f7f7f7;
     border: 1px solid #d0d0d0;
-    line-height: 1.3;
+    line-height: 1.2;
   }
-  .took-no-action strong { font-weight: 700; }
+  .took-no-action .sep {
+    color: #888;
+    margin: 0 3px;
+    font-weight: 400;
+  }
 
   /* Inline italic title that introduces a sub-topic within a committee */
   .topic-title {
@@ -233,6 +237,81 @@
     page-break-after: avoid;
     break-after: avoid;
   }
+
+  /* Bordered sub-topic block (e.g., a discussion item with no advisory action) */
+  .topic-box {
+    border: 1px solid #b8b8b8;
+    background: #fafafa;
+    padding: 3px 7px 2px;
+    margin: 5px 0 0;
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+  }
+  .topic-box .topic-title { margin: 0 0 1px; }
+  .topic-box ul.items { margin-bottom: 0; }
+  .topic-box ul.items > li:last-child { margin-bottom: 0; }
+
+  /* Small inline status label (e.g., "No Advisory Action") */
+  .status-label {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 7.75pt;
+    background: #4A5C5E;
+    color: #fff;
+    padding: 1px 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-left: 4px;
+    vertical-align: 1px;
+  }
+
+  /* ===== Financial Highlights + Key Financial Indicators block ===== */
+  .finance-block { margin-top: 3px; }
+  .finance-block .subsection { font-size: 9.25pt; margin: 6px 0 0; }
+  /* Tighter padding when finance-block is also boxed */
+  .finance-block.topic-box { padding: 2px 5px 1px; }
+  .finance-block.topic-box .subsection:first-child { margin-top: 0; }
+  ul.finance-items { font-size: 8.25pt; line-height: 1.15; padding-left: 13px; margin: 0; }
+  ul.finance-items > li { margin-bottom: 0; }
+  ul.finance-items ul.sub { font-size: 7.75pt; line-height: 1.12; padding-left: 13px; margin: 0; }
+
+  .finance-legend {
+    font-size: 7.25pt;
+    margin: 0 0 1px;
+    line-height: 1.25;
+  }
+  .finance-legend span { padding: 0 4px; margin-right: 2px; font-weight: 700; }
+  .leg-green { background: #c8e6c9; }
+  .leg-yellow { background: #fff59d; }
+  .leg-red { background: #ef9a9a; color: #000; }
+
+  table.finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.25pt;
+    line-height: 1.13;
+    margin: 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  table.finance-table th,
+  table.finance-table td {
+    border: 1px solid #888;
+    padding: 0 3px;
+    vertical-align: middle;
+    text-align: left;
+  }
+  table.finance-table thead th {
+    background: #4A5C5E;
+    color: #fff;
+    font-weight: 700;
+    font-size: 7pt;
+    text-align: center;
+  }
+  table.finance-table td.fin-label { font-weight: 700; }
+  td.cell-green  { background: #c8e6c9; }
+  td.cell-yellow { background: #fff59d; }
+  td.cell-red    { background: #ef9a9a; }
 
   .fa-block {
     break-inside: avoid-column;
@@ -325,7 +404,7 @@
       <div class="banner-divider"></div>
       <div class="banner-right">
         <div class="banner-qrg">Area09 - Cheat Sheet</div>
-        <div class="banner-tag">For financial information and additional committee considerations, please consult with the Delegate.</div>
+        <div class="banner-tag">For detailed information and additional committee considerations, please consult with the Delegate.</div>
       </div>
     </header>
 
@@ -461,25 +540,16 @@
 
         <!-- RIGHT COLUMN: Notable Committee Considerations + Advisory Actions -->
         <div class="fa-col">
-          <div class="section-band">Committee's With No Action <span class="sub">(Considerations Carried)</span></div>
+          <div class="section-band">Committee's With No Action <span class="sub">(Items Reviewed & Considered)</span></div>
           <p class="took-no-action">
-            <strong>ARCHIVES</strong> &middot;
-            <strong>COOPERATION WITH THE PROFESSIONAL COMMUNITY</strong> &middot;
-            <strong>GRAPEVINE AND LA VIÑA</strong> &middot;
-            <strong>INTERNATIONAL CONVENTIONS / REGIONAL FORUMS*</strong> &middot;
-            <strong>TREATMENT AND ACCESSIBILITIES</strong> &middot;
+            ARCHIVES <span class="sep">|</span>
+            COOPERATION WITH THE PROFESSIONAL COMMUNITY <span class="sep">|</span>
+            GRAPEVINE AND LA VIÑA <span class="sep">|</span>
+            INTERNATIONAL CONVENTIONS / REGIONAL FORUMS* <span class="sep">|</span>
+            TREATMENT AND ACCESSIBILITIES
           </p>
 
           <div class="section-band">Advisory Actions <span class="sub">(Passed with 2/3 Substantial Unanimity)</span></div>
-
-          <div class="committee">
-            <div class="subsection">AGENDA</div>
-            <ul class="items">
-              <li>The following theme for the 2027 General Service Conference (GSC): <strong>"Honoring Our Past, Embracing Our Future."</strong> <span class="vote-cite">(129–2)</span></li>
-              <li>The following presentation/discussion topics for the 2027 GSC: <strong>"The Spirit of Rotation: Cultivating Leadership"</strong>, <strong>"Anonymity, Our Spiritual Compass"</strong>, <strong>"Innovation Meets Tradition."</strong> <span class="vote-cite">(129–2)</span></li>
-              <li>2027 GSC workshop topic: <strong>"Unexpected Spiritual Lessons."</strong> <span class="vote-cite">(124–5)</span></li>
-            </ul>
-          </div>
 
           <div class="committee">
             <div class="subsection">CORRECTIONS</div>
@@ -529,12 +599,21 @@
               <li>The trustees' Literature Committee <strong>explore producing an animated video</strong> based on <strong>"The Twelve Traditions Illustrated"</strong> (P-43), with progress report to 2027. <span class="vote-cite">(Original "produce" 110–21; amended to "explore producing" by simple majority; PAI 104)</span></li>
             </ul>
           </div>
+
+          <div class="committee">
+            <div class="subsection">AGENDA</div>
+            <ul class="items">
+              <li>The following theme for the 2027 General Service Conference (GSC): <strong>"Honoring Our Past, Embracing Our Future."</strong> <span class="vote-cite">(129–2)</span></li>
+              <li>The following presentation/discussion topics for the 2027 GSC: <strong>"The Spirit of Rotation: Cultivating Leadership"</strong>, <strong>"Anonymity, Our Spiritual Compass"</strong>, <strong>"Innovation Meets Tradition."</strong> <span class="vote-cite">(129–2)</span></li>
+              <li>2027 GSC workshop topic: <strong>"Unexpected Spiritual Lessons."</strong> <span class="vote-cite">(124–5)</span></li>
+            </ul>
+          </div>
         </div>
 
       </div>
     </main>
 
-    <footer class="footer">For financial information and additional committee considerations, please consult with the Delegate.</footer>
+    <footer class="footer">For detailed information and additional committee considerations, please consult with the Delegate.   Page 1 of 2</footer>
 
   </div>
 
@@ -551,7 +630,7 @@
       <div class="banner-divider"></div>
       <div class="banner-right">
         <div class="banner-qrg">Area09 - Cheat Sheet</div>
-        <div class="banner-tag">For financial information and additional committee considerations, please consult with the Delegate.</div>
+        <div class="banner-tag">For detailed information and additional committee considerations, please consult with the Delegate.</div>
       </div>
     </header>
 
@@ -590,18 +669,20 @@
               </li>
             </ul>
 
-            <div class="topic-title">Fourth Edition <em>Alcohólicos Anónimos</em> *NO ADVISORY ACTION*</div>
-            <ul class="items">
-              <li>
-                The Literature committee discussed the progress report on the development of the <strong>Fourth Edition of the book <em>Alcohólicos Anónimos</em> (Spanish)</strong>. The committee recognized the work that has gone into developing the revised draft and requested that a manuscript or progress report be brought back to the <strong>2027 Conference Committee on Literature</strong>. The committee offered the following suggestions:
-                <ul class="sub">
-                  <li>Additional communication to the Fellowship on the status of the project would be helpful to clarify misunderstanding.</li>
-                  <li>Consideration be given to inviting a <strong>Spanish-speaking member of the Conference Committee on Literature</strong> to participate in the final review of the manuscript prior to Conference.</li>
-                  <li>Consideration be given to inviting <strong>Cesar F., ACM</strong> and chair of the Working Group for developing a Fourth Edition of <em>Alcohólicos Anónimos</em> (Spanish-language Big Book) to attend the 2027 General Service Conference to be available as a resource for Conference deliberations on the manuscript.</li>
-                </ul>
-              </li>
-              <li>The committee reviewed the progress report of the <strong>subcommittee exploring the needs of Spanish-speaking members for tools to access the Big Book</strong> and requested that a progress report be brought back to the 2027 Conference Committee on Literature.</li>
-            </ul>
+            <div class="topic-box">
+              <div class="topic-title">Fourth Edition <em>Alcohólicos Anónimos</em> <span class="status-label">No Advisory Action</span></div>
+              <ul class="items">
+                <li>
+                  The Literature committee discussed the progress report on the development of the <strong>Fourth Edition of the book <em>Alcohólicos Anónimos</em> (Spanish)</strong>. The committee recognized the work that has gone into developing the revised draft and requested that a manuscript or progress report be brought back to the <strong>2027 Conference Committee on Literature</strong>. The committee offered the following suggestions:
+                  <ul class="sub">
+                    <li>Additional communication to the Fellowship on the status of the project would be helpful to clarify misunderstanding.</li>
+                    <li>Consideration be given to inviting a <strong>Spanish-speaking member of the Conference Committee on Literature</strong> to participate in the final review of the manuscript prior to Conference.</li>
+                    <li>Consideration be given to inviting <strong>Cesar F., ACM</strong> and chair of the Working Group for developing a Fourth Edition of <em>Alcohólicos Anónimos</em> (Spanish-language Big Book) to attend the 2027 General Service Conference to be available as a resource for Conference deliberations on the manuscript.</li>
+                  </ul>
+                </li>
+                <li>The committee reviewed the progress report of the <strong>subcommittee exploring the needs of Spanish-speaking members for tools to access the Big Book</strong> and requested that a progress report be brought back to the 2027 Conference Committee on Literature.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -636,13 +717,78 @@
               </li>
             </ul>
           </div>
+
+          <div class="committee finance-block topic-box">
+            <div class="subsection">2025 AAWS/GSB (GSO) Financial Highlights <span class="status-label">Info Only</span></div>
+            <ul class="items finance-items">
+              <li><strong>Seventh Tradition of Self-Support</strong> – $10.579M down 6.0% from $11.249M in 2024</li>
+              <li><strong>Operating Expense before Depreciation</strong> – $18.528M up 0.5% from $18.444M in 2024
+                <ul class="sub">
+                  <li>Program Service Expense – $8.778M down 3.2% from $9.072M in 2024</li>
+                  <li>Supporting Services Expense – $9.750M up 1.4% from $9.612M in 2024</li>
+                </ul>
+              </li>
+              <li><strong>Self-Support</strong> covered <strong>57%</strong> of operating expense</li>
+              <li><strong>Cost of program services per individual</strong> – $5.16 (Program Service Expense ÷ 1.7M members)</li>
+              <li><strong>AAWS publishing gross profits</strong> – $7.456M down 2.4% from $7.640M in 2024</li>
+              <li><strong>Operating surplus before depreciation</strong> – $325,068</li>
+            </ul>
+
+            <div class="subsection">AAWS/GSB (GSO) Key Financial Indicators</div>
+            <div class="finance-legend">
+              <span class="leg-green">GREEN</span> Favorable &nbsp;
+              <span class="leg-yellow">YELLOW</span> Unfavorable / Informative &nbsp;
+              <span class="leg-red">RED</span> Action / Discussion ongoing
+            </div>
+            <table class="finance-table">
+              <thead>
+                <tr>
+                  <th>Indicator</th>
+                  <th>2025 Actual vs 2025 Budget</th>
+                  <th>2025 Actual vs 2024 Actual</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fin-label">Contributions</td>
+                  <td class="cell-red">$10.579M vs $11.000M, 4% less than budget</td>
+                  <td class="cell-red">$10.579M vs $11.249M, 6% less than prior year</td>
+                </tr>
+                <tr>
+                  <td class="fin-label">Gross Literature Sales</td>
+                  <td class="cell-yellow">$15.264M vs $16.000M, 5% less than budget</td>
+                  <td class="cell-green">$15.264M vs $14.452M, 6% more than prior year</td>
+                </tr>
+                <tr>
+                  <td class="fin-label">Net Literature Sales (Gross Margin)</td>
+                  <td class="cell-yellow">$7.456M vs $8.510M, 12% less than budget</td>
+                  <td class="cell-yellow">$7.456M vs $7.640M, 2% less than prior year</td>
+                </tr>
+                <tr>
+                  <td class="fin-label">Operating Expenses before depreciation</td>
+                  <td class="cell-green">$18.528M vs $18.967M, 2% less than budget</td>
+                  <td class="cell-yellow">$18.528M vs $18.444M, 1% more than prior year</td>
+                </tr>
+                <tr>
+                  <td class="fin-label">Operating Surplus before depreciation</td>
+                  <td class="cell-yellow">$325K vs $1.316M</td>
+                  <td class="cell-yellow">$325K vs $1.276M</td>
+                </tr>
+                <tr>
+                  <td class="fin-label">Reserve Coverage (# of months)</td>
+                  <td>5.92</td>
+                  <td>6.47</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>
 
     </main>
 
-    <footer class="footer">For financial information and additional committee considerations, please consult with the Delegate.</footer>
+    <footer class="footer">For detailed information and additional committee considerations, please consult with the Delegate.   Page 2 of 2</footer>
 
   </div>
 
