@@ -14,7 +14,7 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  body { font-size: 9.75pt; line-height: 1.22; }
+  body { font-size: 9.75pt; line-height: 1.18; }
 
   /* Each .sheet is exactly one printed page. */
   .sheet {
@@ -130,11 +130,11 @@
   }
   .fa-col .section-band {
     margin: 0 0 2px;
-    font-size: 11.5pt;
+    font-size: 12pt;
     padding: 2px 4px;
   }
   .fa-col .section-band .sub {
-    font-size: 9pt;
+    font-size: 9.75pt;
     display: block;
     margin-top: 0;
   }
@@ -144,7 +144,7 @@
     -webkit-column-span: all;
     text-align: center;
     font-weight: 700;
-    font-size: 13pt;
+    font-size: 12pt;
     letter-spacing: 0.4px;
     background: #efefef;
     border-top: 1px solid #aaa;
@@ -154,7 +154,7 @@
   }
   .section-band .sub {
     font-weight: 400;
-    font-size: 10.5pt;
+    font-size: 9.75pt;
   }
 
   .committee {
@@ -188,7 +188,7 @@
     margin: 0 0 1px 0;
     padding-left: 14px;
   }
-  ul.items > li { margin-bottom: 0; }
+  ul.items > li { margin-bottom: 1px; }
 
   ul.sub {
     list-style: disc;
@@ -198,19 +198,41 @@
     break-inside: avoid-column;
     page-break-inside: avoid;
   }
-  ul.sub > li { margin-bottom: 0; line-height: 1.15; }
+  ul.sub > li { margin-bottom: 0; line-height: 1.18; }
 
   blockquote {
     margin: 1px 0 1px 4px;
     padding: 1px 6px;
     border-left: 2px solid #999;
-    font-size: 8.25pt;
+    font-size: 8.5pt;
     color: #222;
-    line-height: 1.15;
+    line-height: 1.18;
   }
   blockquote p { margin: 1px 0; }
 
   .vote-cite { font-style: italic; color: #333; }
+
+  /* Compact inline list of committees that took no action */
+  .took-no-action {
+    font-size: 8.5pt;
+    text-align: center;
+    margin: 2px 0 4px;
+    padding: 3px 6px;
+    background: #f7f7f7;
+    border: 1px solid #d0d0d0;
+    line-height: 1.3;
+  }
+  .took-no-action strong { font-weight: 700; }
+
+  /* Inline italic title that introduces a sub-topic within a committee */
+  .topic-title {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 9.75pt;
+    margin: 5px 0 1px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
 
   .fa-block {
     break-inside: avoid-column;
@@ -437,8 +459,17 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: Advisory Actions (smaller committees fit on page 1) -->
+        <!-- RIGHT COLUMN: Notable Committee Considerations + Advisory Actions -->
         <div class="fa-col">
+          <div class="section-band">Committee's With No Action <span class="sub">(Considerations Carried)</span></div>
+          <p class="took-no-action">
+            <strong>ARCHIVES</strong> &middot;
+            <strong>COOPERATION WITH THE PROFESSIONAL COMMUNITY</strong> &middot;
+            <strong>GRAPEVINE AND LA VIÑA</strong> &middot;
+            <strong>INTERNATIONAL CONVENTIONS / REGIONAL FORUMS*</strong> &middot;
+            <strong>TREATMENT AND ACCESSIBILITIES</strong> &middot;
+          </p>
+
           <div class="section-band">Advisory Actions <span class="sub">(Passed with 2/3 Substantial Unanimity)</span></div>
 
           <div class="committee">
@@ -525,69 +556,90 @@
     </header>
 
     <main class="content">
-      <div class="cols">
-        <div class="section-band">Advisory Actions <span class="sub">(Continued from page 1 — Passed with 2/3 Substantial Unanimity)</span></div>
+      <div class="section-band">Advisory Actions <span class="sub">(Continued from page 1 — Passed with 2/3 Substantial Unanimity)</span></div>
 
-        <div class="committee committee-allow-break">
-          <div class="subsection">LITERATURE</div>
-          <ul class="items">
-            <li>The <strong>Fifth Edition of <em>Alcoholics Anonymous</em></strong> be approved with minor editorial changes. <span class="vote-cite">(125–9)</span> Includes revised Appendix III (Medical View), Appendix V (Religious View), Appendix IV (Lasker Award footnote → aa.org), and Appendix VI (How to Get in Touch with A.A.).</li>
-            <li>The word <strong>"Eskimo"</strong> be removed from "Chapter 7: Working With Others" of <em>Alcoholics Anonymous</em> and replaced with a neutral, non-racial term. <span class="vote-cite">(112–22)</span> Amendment to also include the <em>12 &amp; 12</em> Tradition Eight essay failed at this stage <span class="vote-cite">(50–82)</span> — but was later passed via Floor Action #6.</li>
-            <li>
-              The committee noted that in accordance with the 2021 Conference Advisory Action authorizing development of the Fifth Edition <em>Alcoholics Anonymous</em>, which reads in part:
-              <blockquote>
-                <p>"Pending its development, the draft Fifth Edition of the Big Book would include a new foreword, an updated preface and updates to expand on existing ideas in Appendices III and V"</p>
-              </blockquote>
-              "Appendix III — The Medical View on A.A." and "Appendix V — The Religious View on A.A." have been revised in keeping with the 2021 Conference Advisory Action.<br>
-              "Appendix IV — The Lasker Award" was revised to include a footnote to direct readers to the awards page on aa.org.<br>
-              "Appendix VI — How to Get in Touch with A.A." was revised to reflect more current best practices.
-            </li>
-            <li>
-              In keeping with the "A.A. World Services, Inc. Policy on Publication: Keeping A.A. Literature Current," which was accepted by the General Service Conference Advisory Action in 2020, and subsequently revised by the AAWS Board in 2022, the committee noted that the Publishing Department of the General Service Office will maintain editorial responsibilities for the Fifth Edition of the book <em>Alcoholics Anonymous</em>, including:
-              <ul class="sub">
-                <li>Editorial "fine tuning" such as footnotes, punctuation, capitalization, spelling, page numbers, headings and subheadings</li>
-                <li>Finalizing the titles and order of personal stories</li>
-                <li>Editorial review of the title page, jacket copy and table of contents</li>
-                <li>Coordinating the flow of work between the book designer, typesetters, copyeditors, proofreaders and the printers</li>
-                <li>Designing the book cover and jacket</li>
-                <li>Listing other A.A. literature in the final pages of the book</li>
-                <li>Determining the potential inclusion of QR codes based upon current best practices as identified by AAWS, Inc.</li>
-              </ul>
-            </li>
-          </ul>
+      <div class="fa-cols">
+
+        <!-- LEFT COLUMN: LITERATURE (with Spanish Big Book sub-topic) -->
+        <div class="fa-col">
+          <div class="committee committee-allow-break">
+            <div class="subsection">LITERATURE</div>
+            <ul class="items">
+              <li>The <strong>Fifth Edition of <em>Alcoholics Anonymous</em></strong> be approved with minor editorial changes. <span class="vote-cite">(125–9)</span> Includes revised Appendix III (Medical View), Appendix V (Religious View), Appendix IV (Lasker Award footnote → aa.org), and Appendix VI (How to Get in Touch with A.A.).</li>
+              <li>The word <strong>"Eskimo"</strong> be removed from "Chapter 7: Working With Others" of <em>Alcoholics Anonymous</em> and replaced with a neutral, non-racial term. <span class="vote-cite">(112–22)</span> Amendment to also include the <em>12 &amp; 12</em> Tradition Eight essay failed at this stage <span class="vote-cite">(50–82)</span> — but was later passed via Floor Action #6.</li>
+              <li>
+                The committee noted that in accordance with the 2021 Conference Advisory Action authorizing development of the Fifth Edition <em>Alcoholics Anonymous</em>, which reads in part:
+                <blockquote>
+                  <p>"Pending its development, the draft Fifth Edition of the Big Book would include a new foreword, an updated preface and updates to expand on existing ideas in Appendices III and V"</p>
+                </blockquote>
+                "Appendix III — The Medical View on A.A." and "Appendix V — The Religious View on A.A." have been revised in keeping with the 2021 Conference Advisory Action.<br>
+                "Appendix IV — The Lasker Award" was revised to include a footnote to direct readers to the awards page on aa.org.<br>
+                "Appendix VI — How to Get in Touch with A.A." was revised to reflect more current best practices.
+              </li>
+              <li>
+                In keeping with the "A.A. World Services, Inc. Policy on Publication: Keeping A.A. Literature Current," which was accepted by the General Service Conference Advisory Action in 2020, and subsequently revised by the AAWS Board in 2022, the committee noted that the Publishing Department of the General Service Office will maintain editorial responsibilities for the Fifth Edition of the book <em>Alcoholics Anonymous</em>, including:
+                <ul class="sub">
+                  <li>Editorial "fine tuning" such as footnotes, punctuation, capitalization, spelling, page numbers, headings and subheadings</li>
+                  <li>Finalizing the titles and order of personal stories</li>
+                  <li>Editorial review of the title page, jacket copy and table of contents</li>
+                  <li>Coordinating the flow of work between the book designer, typesetters, copyeditors, proofreaders and the printers</li>
+                  <li>Designing the book cover and jacket</li>
+                  <li>Listing other A.A. literature in the final pages of the book</li>
+                  <li>Determining the potential inclusion of QR codes based upon current best practices as identified by AAWS, Inc.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="topic-title">Fourth Edition <em>Alcohólicos Anónimos</em>*NO ADVISORY ACTION</div>
+            <ul class="items">
+              <li>
+                The Literature committee discussed the progress report on the development of the <strong>Fourth Edition of the book <em>Alcohólicos Anónimos</em> (Spanish)</strong>. The committee recognized the work that has gone into developing the revised draft and requested that a manuscript or progress report be brought back to the <strong>2027 Conference Committee on Literature</strong>. The committee offered the following suggestions:
+                <ul class="sub">
+                  <li>Additional communication to the Fellowship on the status of the project would be helpful to clarify misunderstanding.</li>
+                  <li>Consideration be given to inviting a <strong>Spanish-speaking member of the Conference Committee on Literature</strong> to participate in the final review of the manuscript prior to Conference.</li>
+                  <li>Consideration be given to inviting <strong>Cesar F., ACM</strong> and chair of the Working Group for developing a Fourth Edition of <em>Alcohólicos Anónimos</em> (Spanish-language Big Book) to attend the 2027 General Service Conference to be available as a resource for Conference deliberations on the manuscript.</li>
+                </ul>
+              </li>
+              <li>The committee reviewed the progress report of the <strong>subcommittee exploring the needs of Spanish-speaking members for tools to access the Big Book</strong> and requested that a progress report be brought back to the 2027 Conference Committee on Literature.</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="committee committee-allow-break">
-          <div class="subsection">REPORT &amp; CHARTER</div>
-          <ul class="items">
-            <li>
-              Add to the FAQ in Chapter 1 <strong>"What happens if a group decides not to hear a GSR report?"</strong> of the <strong>2026–2028 Edition</strong> of <em>The A.A. Service Manual / Twelve Concepts for World Service</em>. The answer covers alternate sharing methods (with respect for Tradition Eleven) and the spiritual importance of two-way GSR communication. <span class="vote-cite">(123–5 — recommit from 75th GSC)</span>
-              <div style="margin-top:2px;">The answer reads:</div>
-              <blockquote>
-                <p>If a group decides not to hear a GSR report during a meeting, the information can still be shared in other ways. This may include a written report with printed copies, email, group messaging, a shared online document, or posting the report on a bulletin or noticeboard. When utilizing these methods, it is important to respect Tradition Eleven and protect anonymity, so that members' names are not publicly available.</p>
-                <p>Hearing the GSR report is important because it helps keep the group connected to A.A. as a whole. As co-founder Bill W. explained, A.A. groups hold the ultimate responsibility for A.A. world services. The GSR serves as the communication link between the group and the larger Fellowship by sharing the group conscience with the Conference and bringing Conference actions back to the group. This two-way communication allows the group to have a voice in A.A., strengthens unity, and provides spiritual benefits by helping members stay informed, involved, and connected to the Fellowship beyond the home group.</p>
-              </blockquote>
-            </li>
-            <li>Approve a draft of a new <strong>"Amendments" section</strong> for inclusion at the beginning of the Twelve Concepts for World Service section of the Service Manual. <span class="vote-cite">(130–1)</span></li>
-          </ul>
-        </div>
+        <!-- RIGHT COLUMN: REPORT & CHARTER + INVENTORY IMPLEMENTATION -->
+        <div class="fa-col">
+          <div class="committee">
+            <div class="subsection">REPORT &amp; CHARTER</div>
+            <ul class="items">
+              <li>
+                Add to the FAQ in Chapter 1 <strong>"What happens if a group decides not to hear a GSR report?"</strong> of the <strong>2026–2028 Edition</strong> of <em>The A.A. Service Manual / Twelve Concepts for World Service</em>. The answer covers alternate sharing methods (with respect for Tradition Eleven) and the spiritual importance of two-way GSR communication. <span class="vote-cite">(123–5 — recommit from 75th GSC)</span>
+                <div style="margin-top:2px;">The answer reads:</div>
+                <blockquote>
+                  <p>If a group decides not to hear a GSR report during a meeting, the information can still be shared in other ways. This may include a written report with printed copies, email, group messaging, a shared online document, or posting the report on a bulletin or noticeboard. When utilizing these methods, it is important to respect Tradition Eleven and protect anonymity, so that members' names are not publicly available.</p>
+                  <p>Hearing the GSR report is important because it helps keep the group connected to A.A. as a whole. As co-founder Bill W. explained, A.A. groups hold the ultimate responsibility for A.A. world services. The GSR serves as the communication link between the group and the larger Fellowship by sharing the group conscience with the Conference and bringing Conference actions back to the group. This two-way communication allows the group to have a voice in A.A., strengthens unity, and provides spiritual benefits by helping members stay informed, involved, and connected to the Fellowship beyond the home group.</p>
+                </blockquote>
+              </li>
+              <li>Approve a draft of a new <strong>"Amendments" section</strong> for inclusion at the end of the Twelve Concepts for World Service section of the Service Manual. <span class="vote-cite">(130–1)</span></li>
+            </ul>
+          </div>
 
-        <div class="committee">
-          <div class="subsection">INVENTORY IMPLEMENTATION <span class="subsection-note">(one-time committee, follow-up to 75th GSC inventory)</span></div>
-          <ul class="items">
-            <li>
-              The Inventory Implementation Report be <strong>committed to the General Service Board</strong> for review and follow-through. <span class="vote-cite">(112–17)</span> Recommendations included:
-              <ul class="sub">
-                <li>Conference committees made aware of all PAIs through the <strong>quarterly PAI Status Grid</strong>.</li>
-                <li>Year-round PAI submissions encouraged (cut-off only for the immediately upcoming GSC).</li>
-                <li>Conference inventory recurring on a <strong>five-year cadence beginning 2031</strong>, with an implementation committee following each.</li>
-                <li>GSB <strong>sharing session</strong> on the roles and responsibilities of trustees, directors, delegates, and Staff.</li>
-              </ul>
-            </li>
-          </ul>
+          <div class="committee">
+            <div class="subsection">INVENTORY IMPLEMENTATION <span class="subsection-note">(one-time committee, follow-up to 75th GSC inventory)</span></div>
+            <ul class="items">
+              <li>
+                The Inventory Implementation Report be <strong>committed to the General Service Board</strong> for review and follow-through. <span class="vote-cite">(112–17)</span> Recommendations included:
+                <ul class="sub">
+                  <li>Conference committees made aware of all PAIs through the <strong>quarterly PAI Status Grid</strong>.</li>
+                  <li>Year-round PAI submissions encouraged (cut-off only for the immediately upcoming GSC).</li>
+                  <li>Conference inventory recurring on a <strong>five-year cadence beginning 2031</strong>, with an implementation committee following each.</li>
+                  <li>GSB <strong>sharing session</strong> on the roles and responsibilities of trustees, directors, delegates, and Staff.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
 
       </div>
+
     </main>
 
     <footer class="footer">For financial information and additional committee considerations, please consult with the Delegate.</footer>
